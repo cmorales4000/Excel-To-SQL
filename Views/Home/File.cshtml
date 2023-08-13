@@ -1,0 +1,66 @@
+﻿@model ExcelToSQL.Models.FileUploadViewModel
+@{
+    ViewData["Title"] = "File";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    h1 {
+        padding: 50px;
+        font-weight: 500;
+    }
+</style>
+
+<h1>QR CODE GENERATOR</h1>
+
+<div class="form-group row">
+    <form asp-action="File" class="text-left form-validate" enctype="multipart/form-data">
+
+        <div class="form-group col-sm-12">
+            <div class="file-select-button" id="fileName">Upload Excel</div>
+            <input asp-for="XlsFile" type="file" id="chooseFile">
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="form-group col-sm-6">
+            <button type="submit" class="btn btn-primary">Read File</button>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <h1>
+        Converted Data
+    </h1>
+
+    <table class="table table-active table-bordered" width="100">
+
+        <thead>
+            <tr>
+                <th>URL</th>
+                <th>ID CC</th>
+                <th>ID Campaign</th>
+                <th>ID Local</th>
+                <th>Name Local</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.StaffInfoViewModel.StaffList)
+            {
+            <tr>
+                <td>@item.url</td>
+                <td>@item.empId</td>
+                <td>@item.camId</td>
+                <td>@item.locId</td>
+                <td>@item.locNom</td>
+            </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+
+</div>
+
